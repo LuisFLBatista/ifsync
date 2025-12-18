@@ -1,0 +1,35 @@
+name: ifsync
+description: "A new Flutter project."
+publish_to: 'none' 
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # Ícones padrão do iOS
+  cupertino_icons: ^1.0.8
+
+  # Fontes do Google (para a fonte Poppins)
+  google_fonts: ^6.1.0
+
+  # Ícones estilo Lucide (Versão compatível)
+  lucide_icons: ^0.257.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  # Lints para boas práticas de código
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
+
+  # Se quiseres adicionar imagens locais no futuro, descomenta abaixo:
+  # assets:
+  #   - assets/images/
