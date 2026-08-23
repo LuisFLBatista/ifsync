@@ -1,60 +1,61 @@
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
+import '../../tema/cores.dart';
+import '../../tema/estilos.dart';
 
 class CabecalhoListaAtividades extends StatelessWidget {
   const CabecalhoListaAtividades({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return const Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        // CORREÇÃO: Flexible permite que o texto se adapte ao espaço disponível
-        const Flexible(
+        Flexible(
           child: Text(
             'Próximas atividades',
             style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
-                color: Color(0xFF1E293B)),
-            overflow: TextOverflow
-                .ellipsis, // Adiciona "..." se o texto for muito longo
+                color: AppCores.textoPrimario),
+            overflow: TextOverflow.ellipsis,
           ),
         ),
-        const SizedBox(
-            width: 8), // Garante um espaço mínimo entre o título e os botões
+        SizedBox(width: 8),
         Row(
           children: [
-            Container(
-              // CORREÇÃO: Reduzi o padding horizontal de 16 para 12 para economizar espaço
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-              decoration: BoxDecoration(
-                color: const Color(0xFF7B61FF),
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: const Text('Hoje',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 13)),
-            ),
-            const SizedBox(width: 8),
-            Container(
-              // CORREÇÃO: Reduzi o padding horizontal de 16 para 12
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-              decoration: BoxDecoration(
-                color: const Color(0xFFF1F5F9),
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: const Text('Esta Semana',
-                  style: TextStyle(
-                      color: Color(0xFF64748B),
-                      fontWeight: FontWeight.w600,
-                      fontSize: 13)),
-            ),
+            _FiltroPeriodo(rotulo: 'Hoje', ativo: true),
+            SizedBox(width: 8),
+            _FiltroPeriodo(rotulo: 'Esta Semana', ativo: false),
           ],
         )
       ],
+    );
+  }
+}
+
+class _FiltroPeriodo extends StatelessWidget {
+  final String rotulo;
+  final bool ativo;
+
+  const _FiltroPeriodo({required this.rotulo, required this.ativo});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+      decoration: BoxDecoration(
+        color: ativo ? AppCores.roxoPrimario : AppCores.divisor,
+        borderRadius: BorderRadius.circular(AppEstilos.raioPilula),
+      ),
+      child: Text(
+        rotulo,
+        style: TextStyle(
+          color: ativo ? Colors.white : AppCores.textoSecundario,
+          fontWeight: FontWeight.w600,
+          fontSize: 13,
+        ),
+      ),
     );
   }
 }
@@ -71,7 +72,7 @@ class ListaAtividades extends StatelessWidget {
           titulo: 'Leitura: Cap. 3 – SO',
           subtitulo: 'Hoje • 14:00 • Moodle',
           tag: 'Leitura',
-          corTag: Color(0xFFEBE7FF),
+          corTag: AppCores.roxoClaro,
         ),
         SizedBox(height: 16),
         ItemAtividade(
@@ -79,7 +80,7 @@ class ListaAtividades extends StatelessWidget {
           titulo: 'Quiz de Álgebra',
           subtitulo: 'Hoje • 18:30 • Moodle',
           tag: 'Quiz',
-          corTag: Color(0xFFF3E8FF),
+          corTag: AppCores.roxoTag,
         ),
         SizedBox(height: 16),
         ItemAtividade(
@@ -87,7 +88,7 @@ class ListaAtividades extends StatelessWidget {
           titulo: 'Entrega: Projeto Web',
           subtitulo: 'Amanhã • 09:00 • Moodle',
           tag: 'Entrega',
-          corTag: Color(0xFFEBE7FF),
+          corTag: AppCores.roxoClaro,
         ),
       ],
     );
@@ -116,23 +117,18 @@ class ItemAtividade extends StatelessWidget {
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(24),
-        boxShadow: [
-          BoxShadow(
-              color: Colors.black.withOpacity(0.02),
-              blurRadius: 8,
-              offset: const Offset(0, 2)),
-        ],
+        borderRadius: BorderRadius.circular(AppEstilos.raioCard),
+        boxShadow: AppEstilos.sombraCardPequeno,
       ),
       child: Row(
         children: [
           Container(
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
-              color: const Color(0xFFF1F5F9),
-              borderRadius: BorderRadius.circular(16),
+              color: AppCores.divisor,
+              borderRadius: BorderRadius.circular(AppEstilos.raioCardPequeno),
             ),
-            child: Icon(icone, color: const Color(0xFF1E293B), size: 20),
+            child: Icon(icone, color: AppCores.textoPrimario, size: 20),
           ),
           const SizedBox(width: 16),
           Expanded(
@@ -144,13 +140,13 @@ class ItemAtividade extends StatelessWidget {
                   style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 15,
-                      color: Color(0xFF1E293B)),
+                      color: AppCores.textoPrimario),
                 ),
                 const SizedBox(height: 4),
                 Text(
                   subtitulo,
-                  style:
-                      const TextStyle(color: Color(0xFF94A3B8), fontSize: 13),
+                  style: const TextStyle(
+                      color: AppCores.textoTerciario, fontSize: 13),
                 ),
               ],
             ),
@@ -166,7 +162,7 @@ class ItemAtividade extends StatelessWidget {
               style: const TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.w600,
-                  color: Color(0xFF1E293B)),
+                  color: AppCores.textoPrimario),
             ),
           )
         ],

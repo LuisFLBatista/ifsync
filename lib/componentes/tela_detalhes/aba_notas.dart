@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
+import '../../tema/cores.dart';
+import '../../tema/estilos.dart';
 
 class AbaNotas extends StatelessWidget {
   const AbaNotas({super.key});
@@ -15,17 +17,18 @@ class AbaNotas extends StatelessWidget {
             Row(
               children: [
                 Icon(LucideIcons.clipboardList,
-                    size: 20, color: Color(0xFF1E293B)),
+                    size: 20, color: AppCores.textoPrimario),
                 SizedBox(width: 8),
                 Text('Avaliações',
                     style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
-                        color: Color(0xFF1E293B))),
+                        color: AppCores.textoPrimario)),
               ],
             ),
             Text('Peso',
-                style: TextStyle(color: Color(0xFF64748B), fontSize: 13)),
+                style:
+                    TextStyle(color: AppCores.textoSecundario, fontSize: 13)),
           ],
         ),
         SizedBox(height: 16),
@@ -52,19 +55,18 @@ class AbaNotas extends StatelessWidget {
             data: 'Média até agora',
             peso: '20%',
             nota: '8,7'),
-
         SizedBox(height: 24),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text('Fórmula: Média ponderada',
-                style: TextStyle(fontSize: 12, color: Color(0xFF94A3B8))),
+                style: TextStyle(fontSize: 12, color: AppCores.textoTerciario)),
             Text('Média Parcial: 8,5',
                 style: TextStyle(
-                    fontWeight: FontWeight.bold, color: Color(0xFF1E293B))),
+                    fontWeight: FontWeight.bold, color: AppCores.textoPrimario)),
           ],
         ),
-        // Adicione um padding extra no final para não ficar colado na borda se houver scroll
+        // Respiro no fim para o conteúdo não colar na borda ao rolar.
         SizedBox(height: 40),
       ],
     );
@@ -89,14 +91,9 @@ class _ItemAvaliacao extends StatelessWidget {
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(AppEstilos.raioCardPequeno),
         border: Border.all(color: Colors.white),
-        boxShadow: [
-          BoxShadow(
-              color: Colors.black.withOpacity(0.02),
-              blurRadius: 8,
-              offset: const Offset(0, 2)),
-        ],
+        boxShadow: AppEstilos.sombraCardPequeno,
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -106,11 +103,12 @@ class _ItemAvaliacao extends StatelessWidget {
             children: [
               Text(titulo,
                   style: const TextStyle(
-                      fontWeight: FontWeight.bold, color: Color(0xFF1E293B))),
+                      fontWeight: FontWeight.bold,
+                      color: AppCores.textoPrimario)),
               const SizedBox(height: 4),
               Text(data,
-                  style:
-                      const TextStyle(fontSize: 12, color: Color(0xFF94A3B8))),
+                  style: const TextStyle(
+                      fontSize: 12, color: AppCores.textoTerciario)),
             ],
           ),
           Row(
@@ -119,14 +117,14 @@ class _ItemAvaliacao extends StatelessWidget {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                 decoration: BoxDecoration(
-                  color: const Color(0xFFF3E8FF), // Roxo bem claro para o peso
+                  color: AppCores.roxoTag,
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Text(peso,
                     style: const TextStyle(
                         fontSize: 12,
                         fontWeight: FontWeight.bold,
-                        color: Color(0xFF6B21A8))),
+                        color: AppCores.roxoEscuro)),
               ),
               const SizedBox(width: 16),
               SizedBox(
@@ -136,7 +134,7 @@ class _ItemAvaliacao extends StatelessWidget {
                     style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 16,
-                        color: Color(0xFF1E293B))),
+                        color: AppCores.textoPrimario)),
               ),
             ],
           )

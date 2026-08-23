@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../telas/tela_base.dart'; // Importante para a navegação
+import '../../tema/cores.dart';
+import '../../tema/estilos.dart';
+import '../../telas/tela_base.dart';
 
 class BotoesAcao extends StatelessWidget {
   const BotoesAcao({super.key});
@@ -11,34 +13,33 @@ class BotoesAcao extends StatelessWidget {
         SizedBox(
           width: double.infinity,
           child: ElevatedButton(
-            onPressed: () {
-              // AÇÃO DE LOGIN: Substitui a tela de login pela tela principal
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => const TelaBase()),
-              );
-            },
+            // Login simulado: substitui a tela de login pela tela principal.
+            onPressed: () => Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (_) => const TelaBase()),
+            ),
             style: ElevatedButton.styleFrom(
-              backgroundColor: const Color(0xFF7B61FF),
+              backgroundColor: AppCores.roxoPrimario,
               foregroundColor: Colors.white,
               padding: const EdgeInsets.symmetric(vertical: 16),
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)), // Bem arredondado
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(AppEstilos.raioCard)),
               elevation: 0,
-              textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              textStyle:
+                  const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
             child: const Text('Conectar'),
           ),
         ),
         const SizedBox(height: 16),
         TextButton(
-          onPressed: () {
-            // Ação para ler termos
-          },
+          onPressed: () {},
           style: TextButton.styleFrom(
-            foregroundColor: const Color(0xFF1E293B),
+            foregroundColor: AppCores.textoPrimario,
             padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 32),
-            backgroundColor: const Color(0xFFF1F5F9), // Fundo cinza claro
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+            backgroundColor: AppCores.divisor,
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(AppEstilos.raioCard)),
           ),
           child: const SizedBox(
             width: double.infinity,
@@ -53,7 +54,8 @@ class BotoesAcao extends StatelessWidget {
         const Text(
           'Usamos suas credenciais apenas para validação segura e coleta inicial de dados.',
           textAlign: TextAlign.center,
-          style: TextStyle(fontSize: 11, color: Color(0xFF94A3B8), height: 1.4),
+          style: TextStyle(
+              fontSize: 11, color: AppCores.textoTerciario, height: 1.4),
         ),
       ],
     );

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'tema/cores.dart';
 import 'telas/tela_login.dart';
 
 void main() {
@@ -16,8 +17,8 @@ class AppDashboardEscolar extends StatelessWidget {
       title: 'Dashboard Escolar',
       theme: ThemeData(
         useMaterial3: true,
-        scaffoldBackgroundColor: const Color(0xFFF7F9FC),
-        primaryColor: const Color(0xFF7B61FF),
+        scaffoldBackgroundColor: AppCores.fundo,
+        primaryColor: AppCores.roxoPrimario,
         textTheme: GoogleFonts.poppinsTextTheme(),
       ),
       home: const TelaLogin(),

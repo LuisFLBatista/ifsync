@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
+import '../../tema/cores.dart';
+import '../../tema/estilos.dart';
 import '../../telas/tela_detalhes.dart';
 
 class ListaDisciplinas extends StatelessWidget {
@@ -10,7 +12,7 @@ class ListaDisciplinas extends StatelessWidget {
     return const Column(
       children: [
         ItemDisciplina(
-          icone: LucideIcons.calculator, // Lógica
+          icone: LucideIcons.calculator,
           titulo: 'Lógica de Programação',
           media: '7,8',
           faltas: '12/16',
@@ -18,7 +20,7 @@ class ListaDisciplinas extends StatelessWidget {
         ),
         SizedBox(height: 16),
         ItemDisciplina(
-          icone: LucideIcons.database, // Banco de Dados
+          icone: LucideIcons.database,
           titulo: 'Banco de Dados',
           media: '9,1',
           faltas: '3/16',
@@ -26,7 +28,7 @@ class ListaDisciplinas extends StatelessWidget {
         ),
         SizedBox(height: 16),
         ItemDisciplina(
-          icone: LucideIcons.cpu, // Sistemas Operacionais
+          icone: LucideIcons.cpu,
           titulo: 'Sistemas Operacionais',
           media: '8,4',
           faltas: '4/16',
@@ -34,7 +36,7 @@ class ListaDisciplinas extends StatelessWidget {
         ),
         SizedBox(height: 16),
         ItemDisciplina(
-          icone: LucideIcons.gitBranch, // Eng. Software
+          icone: LucideIcons.gitBranch,
           titulo: 'Engenharia de Software',
           media: '8,9',
           faltas: '2/16',
@@ -64,46 +66,31 @@ class ItemDisciplina extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        // Navegação para a tela de detalhes passando o nome da matéria
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) =>
-                TelaDetalhesDisciplina(nomeDisciplina: titulo),
-          ),
-        );
-      },
+      onTap: () => Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (_) => TelaDetalhesDisciplina(nomeDisciplina: titulo),
+        ),
+      ),
       child: Container(
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(24),
-          border:
-              Border.all(color: Colors.white, width: 2), // Borda branca sutil
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.02),
-              blurRadius: 8,
-              offset: const Offset(0, 2),
-            ),
-          ],
+          borderRadius: BorderRadius.circular(AppEstilos.raioCard),
+          border: Border.all(color: Colors.white, width: 2),
+          boxShadow: AppEstilos.sombraCardPequeno,
         ),
         child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            // Ícone
             Container(
               padding: const EdgeInsets.all(12),
               decoration: const BoxDecoration(
-                color: Color(0xFFF1F5F9), // Cinza claro
+                color: AppCores.divisor,
                 shape: BoxShape.circle,
               ),
-              child: Icon(icone, color: const Color(0xFF1E293B), size: 20),
+              child: Icon(icone, color: AppCores.textoPrimario, size: 20),
             ),
             const SizedBox(width: 16),
-
-            // Conteúdo
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -113,7 +100,7 @@ class ItemDisciplina extends StatelessWidget {
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 15,
-                      color: Color(0xFF1E293B),
+                      color: AppCores.textoPrimario,
                     ),
                   ),
                   const SizedBox(height: 8),
@@ -126,10 +113,10 @@ class ItemDisciplina extends StatelessWidget {
                   ),
                   const SizedBox(height: 8),
                   Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 10, vertical: 4),
                     decoration: BoxDecoration(
-                      color: const Color(0xFFEBE7FF), // Roxo claro
+                      color: AppCores.roxoClaro,
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Text(
@@ -137,17 +124,15 @@ class ItemDisciplina extends StatelessWidget {
                       style: const TextStyle(
                         fontSize: 12,
                         fontWeight: FontWeight.w500,
-                        color: Color(0xFF1E293B),
+                        color: AppCores.textoPrimario,
                       ),
                     ),
                   ),
                 ],
               ),
             ),
-
-            // Seta direita
             const Icon(LucideIcons.chevronRight,
-                size: 20, color: Color(0xFF94A3B8)),
+                size: 20, color: AppCores.textoTerciario),
           ],
         ),
       ),
@@ -164,13 +149,13 @@ class _TagInfo extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
       decoration: BoxDecoration(
-        color: const Color(0xFFF1F5F9), // Cinza
+        color: AppCores.divisor,
         borderRadius: BorderRadius.circular(12),
       ),
       child: Text(
         texto,
         style: const TextStyle(
-          color: Color(0xFF64748B),
+          color: AppCores.textoSecundario,
           fontSize: 12,
           fontWeight: FontWeight.w500,
         ),

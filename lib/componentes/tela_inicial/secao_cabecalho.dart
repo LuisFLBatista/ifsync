@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../../tema/cores.dart';
+import '../../tema/imagens.dart';
 
 class SecaoCabecalho extends StatelessWidget {
   const SecaoCabecalho({super.key});
@@ -16,22 +18,19 @@ class SecaoCabecalho extends StatelessWidget {
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
-                color: Color(0xFF1E293B),
+                color: AppCores.textoPrimario,
               ),
             ),
             SizedBox(height: 4),
             Text(
               'Seg, 12 de Ago • 2025',
-              style: TextStyle(
-                fontSize: 14,
-                color: Color(0xFF64748B),
-              ),
+              style: TextStyle(fontSize: 14, color: AppCores.textoSecundario),
             ),
           ],
         ),
         CircleAvatar(
           radius: 24,
-          backgroundImage: NetworkImage('https://i.pravatar.cc/150?img=32'),
+          backgroundImage: NetworkImage(AppImagens.avatarAluno),
         ),
       ],
     );

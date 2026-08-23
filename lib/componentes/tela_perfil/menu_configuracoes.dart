@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
+import '../../tema/cores.dart';
+import '../../tema/estilos.dart';
 
 // --- WIDGETS AUXILIARES ---
 
@@ -7,7 +9,7 @@ class _ItemConfiguracao extends StatelessWidget {
   final IconData icone;
   final String titulo;
   final String subtitulo;
-  final Widget trailing; // O que vai no final (Switch, Seta, etc)
+  final Widget trailing; // O que aparece no fim (Switch, seta, etc.).
 
   const _ItemConfiguracao({
     required this.icone,
@@ -22,13 +24,12 @@ class _ItemConfiguracao extends StatelessWidget {
       padding: const EdgeInsets.all(16),
       margin: const EdgeInsets.only(bottom: 12),
       decoration: BoxDecoration(
-        color:
-            const Color(0xFFEBE7FF).withOpacity(0.4), // Fundo roxo muito claro
-        borderRadius: BorderRadius.circular(20),
+        color: AppCores.roxoClaro.withValues(alpha: 0.4),
+        borderRadius: BorderRadius.circular(AppEstilos.raioPilula),
       ),
       child: Row(
         children: [
-          Icon(icone, size: 20, color: const Color(0xFF1E293B)),
+          Icon(icone, size: 20, color: AppCores.textoPrimario),
           const SizedBox(width: 16),
           Expanded(
             child: Column(
@@ -39,7 +40,7 @@ class _ItemConfiguracao extends StatelessWidget {
                   style: const TextStyle(
                     fontWeight: FontWeight.w600,
                     fontSize: 14,
-                    color: Color(0xFF1E293B),
+                    color: AppCores.textoPrimario,
                   ),
                 ),
                 if (subtitulo.isNotEmpty) ...[
@@ -48,7 +49,7 @@ class _ItemConfiguracao extends StatelessWidget {
                     subtitulo,
                     style: const TextStyle(
                       fontSize: 11,
-                      color: Color(0xFF64748B),
+                      color: AppCores.textoSecundario,
                     ),
                   ),
                 ]
@@ -58,6 +59,23 @@ class _ItemConfiguracao extends StatelessWidget {
           trailing,
         ],
       ),
+    );
+  }
+}
+
+/// Switch padrão com a cor de marca, reaproveitado pelos itens de notificação.
+class _SwitchConfig extends StatelessWidget {
+  final bool valor;
+  final ValueChanged<bool> onChanged;
+
+  const _SwitchConfig({required this.valor, required this.onChanged});
+
+  @override
+  Widget build(BuildContext context) {
+    return Switch(
+      value: valor,
+      activeThumbColor: AppCores.roxoPrimario,
+      onChanged: onChanged,
     );
   }
 }
@@ -84,9 +102,8 @@ class _MenuNotificacoesState extends State<MenuNotificacoes> {
           icone: LucideIcons.bell,
           titulo: 'Alertas de novas notas',
           subtitulo: 'Desative para ser alertado apenas sobre prazos',
-          trailing: Switch(
-            value: _alertasNotas,
-            activeThumbColor: const Color(0xFF7B61FF),
+          trailing: _SwitchConfig(
+            valor: _alertasNotas,
             onChanged: (v) => setState(() => _alertasNotas = v),
           ),
         ),
@@ -94,9 +111,8 @@ class _MenuNotificacoesState extends State<MenuNotificacoes> {
           icone: LucideIcons.calendar,
           titulo: 'Lembretes de prazos',
           subtitulo: 'Receba avisos de entregas e provas',
-          trailing: Switch(
-            value: _lembretesPrazos,
-            activeThumbColor: const Color(0xFF7B61FF),
+          trailing: _SwitchConfig(
+            valor: _lembretesPrazos,
             onChanged: (v) => setState(() => _lembretesPrazos = v),
           ),
         ),
@@ -104,9 +120,8 @@ class _MenuNotificacoesState extends State<MenuNotificacoes> {
           icone: LucideIcons.mail,
           titulo: 'Resumo semanal por e-mail',
           subtitulo: 'Envie um consolidado toda segunda',
-          trailing: Switch(
-            value: _resumoSemanal,
-            activeThumbColor: const Color(0xFF7B61FF),
+          trailing: _SwitchConfig(
+            valor: _resumoSemanal,
             onChanged: (v) => setState(() => _resumoSemanal = v),
           ),
         ),
@@ -127,14 +142,14 @@ class MenuContas extends StatelessWidget {
           titulo: 'Minha senha do SUAP mudou',
           subtitulo: 'Atualize suas credenciais de acesso',
           trailing: Icon(LucideIcons.chevronRight,
-              size: 20, color: Color(0xFF94A3B8)),
+              size: 20, color: AppCores.textoTerciario),
         ),
         _ItemConfiguracao(
           icone: LucideIcons.link,
           titulo: 'Vincular/Desvincular Moodle',
           subtitulo: 'Gerencie a integração das atividades',
           trailing: Icon(LucideIcons.chevronRight,
-              size: 20, color: Color(0xFF94A3B8)),
+              size: 20, color: AppCores.textoTerciario),
         ),
       ],
     );
@@ -150,12 +165,12 @@ class MenuAparencia extends StatelessWidget {
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(24),
+        borderRadius: BorderRadius.circular(AppEstilos.raioCard),
         border: Border.all(color: Colors.white),
       ),
       child: Row(
         children: [
-          const Icon(LucideIcons.moon, size: 20, color: Color(0xFF1E293B)),
+          const Icon(LucideIcons.moon, size: 20, color: AppCores.textoPrimario),
           const SizedBox(width: 16),
           const Expanded(
             child: Column(
@@ -167,16 +182,16 @@ class MenuAparencia extends StatelessWidget {
                 ),
                 Text(
                   'Claro / Escuro',
-                  style: TextStyle(fontSize: 11, color: Color(0xFF64748B)),
+                  style: TextStyle(fontSize: 11, color: AppCores.textoSecundario),
                 ),
               ],
             ),
           ),
-          // Simulação de Segmented Control
+          // Simulação de um segmented control.
           Container(
             padding: const EdgeInsets.all(4),
             decoration: BoxDecoration(
-              color: const Color(0xFFF1F5F9),
+              color: AppCores.divisor,
               borderRadius: BorderRadius.circular(12),
             ),
             child: const Row(
@@ -203,7 +218,7 @@ class _OpcaoTema extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
       decoration: BoxDecoration(
-        color: selecionado ? const Color(0xFFEBE7FF) : Colors.transparent,
+        color: selecionado ? AppCores.roxoClaro : Colors.transparent,
         borderRadius: BorderRadius.circular(8),
       ),
       child: Text(
@@ -211,8 +226,7 @@ class _OpcaoTema extends StatelessWidget {
         style: TextStyle(
           fontSize: 11,
           fontWeight: FontWeight.w600,
-          color:
-              selecionado ? const Color(0xFF7B61FF) : const Color(0xFF64748B),
+          color: selecionado ? AppCores.roxoPrimario : AppCores.textoSecundario,
         ),
       ),
     );
@@ -230,25 +244,26 @@ class MenuSobre extends StatelessWidget {
           padding: const EdgeInsets.all(16),
           margin: const EdgeInsets.only(bottom: 12),
           decoration: BoxDecoration(
-            color: const Color(0xFFEBE7FF).withOpacity(0.4),
-            borderRadius: BorderRadius.circular(20),
+            color: AppCores.roxoClaro.withValues(alpha: 0.4),
+            borderRadius: BorderRadius.circular(AppEstilos.raioPilula),
           ),
           child: const Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text('Versão',
                   style: TextStyle(
-                      fontWeight: FontWeight.bold, color: Color(0xFF1E293B))),
+                      fontWeight: FontWeight.bold,
+                      color: AppCores.textoPrimario)),
               Text('1.2.0 (build 34)',
-                  style: TextStyle(color: Color(0xFF64748B))),
+                  style: TextStyle(color: AppCores.textoSecundario)),
             ],
           ),
         ),
         Container(
           padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
-            color: const Color(0xFFEBE7FF).withOpacity(0.4),
-            borderRadius: BorderRadius.circular(20),
+            color: AppCores.roxoClaro.withValues(alpha: 0.4),
+            borderRadius: BorderRadius.circular(AppEstilos.raioPilula),
           ),
           child: const Row(
             children: [
@@ -259,10 +274,10 @@ class MenuSobre extends StatelessWidget {
                     Text('Ajuda & Suporte',
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            color: Color(0xFF1E293B))),
+                            color: AppCores.textoPrimario)),
                     Text('Central de ajuda e contato',
-                        style:
-                            TextStyle(fontSize: 12, color: Color(0xFF64748B))),
+                        style: TextStyle(
+                            fontSize: 12, color: AppCores.textoSecundario)),
                   ],
                 ),
               ),
@@ -284,11 +299,11 @@ class BotaoSair extends StatelessWidget {
       child: ElevatedButton(
         onPressed: () {},
         style: ElevatedButton.styleFrom(
-          backgroundColor: const Color(0xFFFF5F5F), // Vermelho claro/salmão
+          backgroundColor: AppCores.perigo,
           foregroundColor: Colors.white,
           padding: const EdgeInsets.symmetric(vertical: 16),
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(AppEstilos.raioPilula)),
           elevation: 0,
         ),
         child: const Text('Sair da Conta',

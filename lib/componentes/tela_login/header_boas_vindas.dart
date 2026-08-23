@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
+import '../../tema/cores.dart';
 
 class HeaderBoasVindas extends StatelessWidget {
   const HeaderBoasVindas({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return const Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -14,17 +15,9 @@ class HeaderBoasVindas extends StatelessWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                padding: const EdgeInsets.all(10),
-                decoration: const BoxDecoration(
-                  color: Color(0xFFEBE7FF),
-                  shape: BoxShape.circle,
-                ),
-                child: const Icon(LucideIcons.sparkles,
-                    size: 20, color: Color(0xFF7B61FF)),
-              ),
-              const SizedBox(width: 12),
-              const Expanded(
+              _IconeMarca(),
+              SizedBox(width: 12),
+              Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -33,7 +26,7 @@ class HeaderBoasVindas extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
-                        color: Color(0xFF1E293B),
+                        color: AppCores.textoPrimario,
                       ),
                     ),
                     SizedBox(height: 4),
@@ -41,7 +34,7 @@ class HeaderBoasVindas extends StatelessWidget {
                       'Unifique Moodle + SUAP em um só lugar',
                       style: TextStyle(
                         fontSize: 13,
-                        color: Color(0xFF64748B),
+                        color: AppCores.textoSecundario,
                         height: 1.4,
                       ),
                     ),
@@ -51,9 +44,26 @@ class HeaderBoasVindas extends StatelessWidget {
             ],
           ),
         ),
-        const SizedBox(width: 8),
-        const Icon(LucideIcons.helpCircle, size: 24, color: Color(0xFF94A3B8)),
+        SizedBox(width: 8),
+        Icon(LucideIcons.helpCircle, size: 24, color: AppCores.textoTerciario),
       ],
+    );
+  }
+}
+
+class _IconeMarca extends StatelessWidget {
+  const _IconeMarca();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(10),
+      decoration: const BoxDecoration(
+        color: AppCores.roxoClaro,
+        shape: BoxShape.circle,
+      ),
+      child: const Icon(LucideIcons.sparkles,
+          size: 20, color: AppCores.roxoPrimario),
     );
   }
 }

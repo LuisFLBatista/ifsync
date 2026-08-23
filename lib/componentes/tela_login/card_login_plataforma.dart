@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
+import '../../tema/cores.dart';
+import '../../tema/estilos.dart';
 
 class CardLoginPlataforma extends StatelessWidget {
   final String titulo;
@@ -21,19 +23,16 @@ class CardLoginPlataforma extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(24),
-        boxShadow: [
-          BoxShadow(color: Colors.black.withOpacity(0.02), blurRadius: 10, offset: const Offset(0, 4)),
-        ],
-      ),
+      decoration: AppEstilos.cardBranco,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             titulo,
-            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Color(0xFF1E293B)),
+            style: const TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: AppCores.textoPrimario),
           ),
           const SizedBox(height: 16),
           Row(
@@ -83,23 +82,27 @@ class _InputCampo extends StatelessWidget {
       children: [
         Text(
           label,
-          style: const TextStyle(fontSize: 12, color: Color(0xFF64748B), fontWeight: FontWeight.w500),
+          style: const TextStyle(
+              fontSize: 12,
+              color: AppCores.textoSecundario,
+              fontWeight: FontWeight.w500),
         ),
         const SizedBox(height: 6),
         Container(
-          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10), // Padding ajustado para altura
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
           decoration: BoxDecoration(
-            border: Border.all(color: const Color(0xFFE2E8F0)),
-            borderRadius: BorderRadius.circular(24), // Bordas bem redondas como na imagem
+            border: Border.all(color: AppCores.borda),
+            borderRadius: BorderRadius.circular(AppEstilos.raioCard),
           ),
           child: Row(
             children: [
-              Icon(icone, size: 16, color: const Color(0xFF94A3B8)),
+              Icon(icone, size: 16, color: AppCores.textoTerciario),
               const SizedBox(width: 8),
               Expanded(
                 child: Text(
                   placeholder,
-                  style: const TextStyle(fontSize: 13, color: Color(0xFF94A3B8)),
+                  style: const TextStyle(
+                      fontSize: 13, color: AppCores.textoTerciario),
                   overflow: TextOverflow.ellipsis,
                 ),
               ),

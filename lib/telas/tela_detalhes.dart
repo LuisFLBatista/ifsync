@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import '../tema/cores.dart';
+import '../componentes/comuns/seletor_abas.dart';
 import '../componentes/tela_detalhes/cabecalho_detalhes.dart';
 import '../componentes/tela_detalhes/resumo_disciplina.dart';
-import '../componentes/tela_detalhes/seletor_abas_detalhes.dart';
 import '../componentes/tela_detalhes/aba_notas.dart';
 import '../componentes/tela_detalhes/aba_atividades.dart';
 
@@ -19,11 +20,11 @@ class _TelaDetalhesDisciplinaState extends State<TelaDetalhesDisciplina> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF7F9FC),
+      backgroundColor: AppCores.fundo,
       body: SafeArea(
         child: Column(
           children: [
-            // Parte Superior (Fixa)
+            // Cabeçalho e resumo ficam fixos no topo.
             Padding(
               padding: const EdgeInsets.all(24.0),
               child: Column(
@@ -32,16 +33,19 @@ class _TelaDetalhesDisciplinaState extends State<TelaDetalhesDisciplina> {
                   const SizedBox(height: 24),
                   const ResumoDisciplina(),
                   const SizedBox(height: 24),
-                  SeletorAbasDetalhes(
+                  SeletorAbas(
+                    abas: const ['Notas', 'Atividades (Moodle)'],
                     indiceAtual: _abaSelecionada,
-                    aoClicar: (index) =>
-                        setState(() => _abaSelecionada = index),
+                    aoSelecionar: (indice) =>
+                        setState(() => _abaSelecionada = indice),
+                    corFundo: AppCores.roxoClaro.withValues(alpha: 0.5),
+                    comSombra: false,
+                    tamanhoFonte: 12,
                   ),
                 ],
               ),
             ),
-
-            // Parte Inferior (Conteúdo Rolável)
+            // Apenas o conteúdo da aba rola.
             Expanded(
               child: SingleChildScrollView(
                 padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -55,13 +59,6 @@ class _TelaDetalhesDisciplinaState extends State<TelaDetalhesDisciplina> {
   }
 
   Widget _construirConteudoAba() {
-    switch (_abaSelecionada) {
-      case 0:
-        return const AbaNotas();
-      case 1:
-        return const AbaAtividades();
-      default:
-        return const AbaNotas();
-    }
+    return _abaSelecionada == 1 ? const AbaAtividades() : const AbaNotas();
   }
 }

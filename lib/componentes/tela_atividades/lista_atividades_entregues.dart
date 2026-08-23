@@ -2,89 +2,133 @@ import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import '../../tema/cores.dart';
 import '../../tema/estilos.dart';
-import '../comuns/etiqueta_status.dart';
 
-class AbaAtividades extends StatelessWidget {
-  const AbaAtividades({super.key});
+class ListaAtividadesEntregues extends StatelessWidget {
+  const ListaAtividadesEntregues({super.key});
 
   @override
   Widget build(BuildContext context) {
     return const Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _TituloSecao(icone: LucideIcons.listChecks, texto: 'Próximas'),
-        SizedBox(height: 16),
-        _ItemAtividade(
-          titulo: 'Quiz 5',
-          prazo: 'Prazo: 22/05 • Moodle',
-          status: 'A fazer',
-        ),
-        SizedBox(height: 12),
-        _ItemAtividade(
-          titulo: 'Fórum: Recursão',
-          prazo: 'Prazo: 28/05 • Moodle',
-          status: 'Opcional',
-        ),
-        SizedBox(height: 12),
-        _ItemAtividade(
-          titulo: 'Projeto Final - Etapa 1',
-          prazo: 'Prazo: 05/06 • Moodle',
-          status: 'Em andamento',
-        ),
-        SizedBox(height: 32),
-        _TituloSecao(icone: LucideIcons.clock, texto: 'Entregues'),
-        SizedBox(height: 16),
-        _ItemAtividadeEntregue(
-          titulo: 'T1 - Vetores',
-          data: 'Entregue em 26/04',
-          nota: '9,0',
-        ),
-        SizedBox(height: 12),
-        _ItemAtividadeEntregue(
-          titulo: 'P1',
-          data: 'Aplicada em 12/04',
-          nota: '8,0',
-        ),
-        SizedBox(height: 40),
-      ],
-    );
-  }
-}
-
-class _TituloSecao extends StatelessWidget {
-  final IconData icone;
-  final String texto;
-
-  const _TituloSecao({required this.icone, required this.texto});
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Icon(icone, size: 20, color: AppCores.textoPrimario),
-        const SizedBox(width: 8),
         Text(
-          texto,
-          style: const TextStyle(
+          'Atividades Concluídas',
+          style: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.bold,
             color: AppCores.textoPrimario,
           ),
         ),
+        SizedBox(height: 16),
+        _ItemAtividadeEntregue(
+          titulo: 'T1 - Vetores',
+          disciplina: 'Lógica de Programação',
+          data: 'Entregue em 26/04',
+          nota: '9,0',
+          icone: LucideIcons.code,
+        ),
+        SizedBox(height: 12),
+        _ItemAtividadeEntregue(
+          titulo: 'P1',
+          disciplina: 'Lógica de Programação',
+          data: 'Aplicada em 12/04',
+          nota: '8,0',
+          icone: LucideIcons.fileCheck,
+        ),
+        SizedBox(height: 12),
+        _ItemAtividadeEntregue(
+          titulo: 'Quiz 4',
+          disciplina: 'Lógica de Programação',
+          data: 'Entregue em 08/04',
+          nota: '10,0',
+          icone: LucideIcons.fileText,
+        ),
+        SizedBox(height: 12),
+        _ItemAtividadeEntregue(
+          titulo: 'Lista de Exercícios 2',
+          disciplina: 'Algoritmos e Estruturas de Dados',
+          data: 'Entregue em 05/04',
+          nota: '8,5',
+          icone: LucideIcons.fileText,
+        ),
+        SizedBox(height: 12),
+        _ItemAtividadeEntregue(
+          titulo: 'Trabalho Prático 1',
+          disciplina: 'Banco de Dados',
+          data: 'Entregue em 28/03',
+          nota: '9,5',
+          icone: LucideIcons.clipboardList,
+        ),
+        SizedBox(height: 12),
+        _ItemAtividadeEntregue(
+          titulo: 'Prova P1',
+          disciplina: 'Cálculo I',
+          data: 'Aplicada em 20/03',
+          nota: '7,5',
+          icone: LucideIcons.fileCheck,
+        ),
+        SizedBox(height: 24),
+        _CardMediaGeral(),
       ],
     );
   }
 }
 
-class _ItemAtividade extends StatelessWidget {
-  final String titulo;
-  final String prazo;
-  final String status;
+class _CardMediaGeral extends StatelessWidget {
+  const _CardMediaGeral();
 
-  const _ItemAtividade({
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: AppCores.roxoClaro.withValues(alpha: 0.5),
+        borderRadius: BorderRadius.circular(AppEstilos.raioCardPequeno),
+      ),
+      child: const Row(
+        children: [
+          Icon(LucideIcons.trophy, size: 18, color: AppCores.roxoPrimario),
+          SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Média Geral',
+                  style:
+                      TextStyle(fontSize: 13, color: AppCores.textoSecundario),
+                ),
+                SizedBox(height: 4),
+                Text(
+                  '8,75',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: AppCores.textoPrimario,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _ItemAtividadeEntregue extends StatelessWidget {
+  final String titulo;
+  final String disciplina;
+  final String data;
+  final String nota;
+  final IconData icone;
+
+  const _ItemAtividadeEntregue({
     required this.titulo,
-    required this.prazo,
-    required this.status,
+    required this.disciplina,
+    required this.data,
+    required this.nota,
+    required this.icone,
   });
 
   @override
@@ -98,8 +142,16 @@ class _ItemAtividade extends StatelessWidget {
         boxShadow: AppEstilos.sombraCardPequeno,
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
+          Container(
+            padding: const EdgeInsets.all(12),
+            decoration: BoxDecoration(
+              color: AppCores.sucesso.withValues(alpha: 0.1),
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Icon(icone, size: 20, color: AppCores.sucesso),
+          ),
+          const SizedBox(width: 12),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -114,56 +166,10 @@ class _ItemAtividade extends StatelessWidget {
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  prazo,
+                  disciplina,
                   style: const TextStyle(
-                    fontSize: 12,
-                    color: AppCores.textoTerciario,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          EtiquetaStatus(status),
-        ],
-      ),
-    );
-  }
-}
-
-class _ItemAtividadeEntregue extends StatelessWidget {
-  final String titulo;
-  final String data;
-  final String nota;
-
-  const _ItemAtividadeEntregue({
-    required this.titulo,
-    required this.data,
-    required this.nota,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(AppEstilos.raioCardPequeno),
-        border: Border.all(color: Colors.white),
-        boxShadow: AppEstilos.sombraCardPequeno,
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  titulo,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 15,
-                    color: AppCores.textoPrimario,
+                    fontSize: 13,
+                    color: AppCores.textoSecundario,
                   ),
                 ),
                 const SizedBox(height: 4),

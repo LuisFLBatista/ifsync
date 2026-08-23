@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
+import '../tema/cores.dart';
 import '../componentes/tela_login/header_boas_vindas.dart';
 import '../componentes/tela_login/card_informativo.dart';
 import '../componentes/tela_login/card_login_plataforma.dart';
@@ -12,7 +13,7 @@ class TelaLogin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      backgroundColor: Color(0xFFF7F9FC),
+      backgroundColor: AppCores.fundo,
       body: SafeArea(
         child: SingleChildScrollView(
           padding: EdgeInsets.all(24.0),

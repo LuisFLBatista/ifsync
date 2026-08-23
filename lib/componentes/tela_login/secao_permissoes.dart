@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
+import '../../tema/cores.dart';
+import '../../tema/estilos.dart';
 
 class SecaoPermissoes extends StatefulWidget {
   const SecaoPermissoes({super.key});
@@ -16,16 +18,7 @@ class _SecaoPermissoesState extends State<SecaoPermissoes> {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(24),
-        boxShadow: [
-          BoxShadow(
-              color: Colors.black.withOpacity(0.02),
-              blurRadius: 10,
-              offset: const Offset(0, 4)),
-        ],
-      ),
+      decoration: AppEstilos.cardBranco,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -34,7 +27,7 @@ class _SecaoPermissoesState extends State<SecaoPermissoes> {
             style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
-                color: Color(0xFF1E293B)),
+                color: AppCores.textoPrimario),
           ),
           const SizedBox(height: 16),
           _ItemPermissao(
@@ -47,7 +40,7 @@ class _SecaoPermissoesState extends State<SecaoPermissoes> {
           ),
           const Padding(
             padding: EdgeInsets.symmetric(vertical: 12.0),
-            child: Divider(height: 1, color: Color(0xFFF1F5F9)),
+            child: Divider(height: 1, color: AppCores.divisor),
           ),
           _ItemPermissao(
             icone: LucideIcons.calendar,
@@ -83,7 +76,7 @@ class _ItemPermissao extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Icon(icone, size: 20, color: const Color(0xFF1E293B)),
+        Icon(icone, size: 20, color: AppCores.textoPrimario),
         const SizedBox(width: 16),
         Expanded(
           child: Column(
@@ -93,12 +86,12 @@ class _ItemPermissao extends StatelessWidget {
                   style: const TextStyle(
                       fontWeight: FontWeight.w600,
                       fontSize: 14,
-                      color: Color(0xFF1E293B))),
+                      color: AppCores.textoPrimario)),
               const SizedBox(height: 4),
               Text(
                 descricao,
                 style: const TextStyle(
-                    fontSize: 12, color: Color(0xFF64748B), height: 1.3),
+                    fontSize: 12, color: AppCores.textoSecundario, height: 1.3),
               ),
             ],
           ),
@@ -106,7 +99,7 @@ class _ItemPermissao extends StatelessWidget {
         const SizedBox(width: 12),
         Switch(
           value: valor,
-          activeThumbColor: const Color(0xFF7B61FF),
+          activeThumbColor: AppCores.roxoPrimario,
           onChanged: onChanged,
         ),
       ],

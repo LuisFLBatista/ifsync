@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
+import '../../tema/cores.dart';
+import '../../tema/estilos.dart';
 
 class SecaoConquistas extends StatelessWidget {
   const SecaoConquistas({super.key});
@@ -7,37 +9,30 @@ class SecaoConquistas extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GridView.count(
-      crossAxisCount: 2, // 2 colunas
-      shrinkWrap: true, // Ocupa apenas o espaço necessário
-      physics:
-          const NeverScrollableScrollPhysics(), // Não rola sozinho (quem rola é a página inteira)
+      crossAxisCount: 2,
+      shrinkWrap: true, // Ocupa só o espaço necessário.
+      physics: const NeverScrollableScrollPhysics(), // Quem rola é a página.
       mainAxisSpacing: 12,
       crossAxisSpacing: 12,
-      childAspectRatio: 1.4, // Proporção dos cartões (Largura / Altura)
+      childAspectRatio: 1.4, // Largura / altura dos cartões.
       children: const [
         _CardConquista(
           icone: LucideIcons.clock,
           titulo: 'Pontualidade em Dia',
           descricao: 'Entregou 5 tarefas antes do prazo',
           nivel: 'Lv. 2',
-          corFundo: Color(0xFFEBE7FF),
-          corIcone: Color(0xFF1E293B),
         ),
         _CardConquista(
           icone: LucideIcons.shieldCheck,
           titulo: 'Presença de Ferro',
           descricao: 'Frequência acima de 95%',
           nivel: 'Novato',
-          corFundo: Color(0xFFEBE7FF),
-          corIcone: Color(0xFF1E293B),
         ),
         _CardConquista(
           icone: LucideIcons.star,
           titulo: 'Top da Turma',
           descricao: 'Média geral acima de 9,0',
           nivel: 'Bloqueado',
-          corFundo: Color(0xFFEBE7FF),
-          corIcone: Color(0xFF1E293B),
           bloqueado: true,
         ),
         _CardConquista(
@@ -45,8 +40,6 @@ class SecaoConquistas extends StatelessWidget {
           titulo: 'Maratonista',
           descricao: '7 dias seguidos no app',
           nivel: 'Lv. 1',
-          corFundo: Color(0xFFEBE7FF),
-          corIcone: Color(0xFF1E293B),
         ),
       ],
     );
@@ -58,8 +51,6 @@ class _CardConquista extends StatelessWidget {
   final String titulo;
   final String descricao;
   final String nivel;
-  final Color corFundo;
-  final Color corIcone;
   final bool bloqueado;
 
   const _CardConquista({
@@ -67,8 +58,6 @@ class _CardConquista extends StatelessWidget {
     required this.titulo,
     required this.descricao,
     required this.nivel,
-    required this.corFundo,
-    required this.corIcone,
     this.bloqueado = false,
   });
 
@@ -77,9 +66,9 @@ class _CardConquista extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: corFundo,
-        borderRadius: BorderRadius.circular(20),
-        // Se estiver bloqueado, deixamos um pouco transparente
+        color: AppCores.roxoClaro,
+        borderRadius: BorderRadius.circular(AppEstilos.raioPilula),
+        // Conquistas bloqueadas perdem a saturação.
         backgroundBlendMode: bloqueado ? BlendMode.luminosity : null,
       ),
       child: Stack(
@@ -87,7 +76,7 @@ class _CardConquista extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Icon(icone, size: 24, color: corIcone),
+              Icon(icone, size: 24, color: AppCores.textoPrimario),
               const Spacer(),
               Text(
                 titulo,
@@ -98,7 +87,7 @@ class _CardConquista extends StatelessWidget {
               Text(
                 descricao,
                 style: const TextStyle(
-                    fontSize: 10, color: Color(0xFF64748B), height: 1.2),
+                    fontSize: 10, color: AppCores.textoSecundario, height: 1.2),
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
               ),
@@ -110,7 +99,7 @@ class _CardConquista extends StatelessWidget {
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
               decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.5),
+                color: Colors.white.withValues(alpha: 0.5),
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Text(

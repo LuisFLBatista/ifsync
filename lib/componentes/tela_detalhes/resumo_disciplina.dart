@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
+import '../../tema/cores.dart';
+import '../../tema/estilos.dart';
 
 class ResumoDisciplina extends StatelessWidget {
   const ResumoDisciplina({super.key});
@@ -12,13 +14,11 @@ class ResumoDisciplina extends StatelessWidget {
           children: [
             Expanded(
                 child: _CardInfo(
-                    titulo: 'Professor',
-                    valor: '[Nome do Professor]',
-                    icone: null)),
+                    titulo: 'Professor', valor: '[Nome do Professor]')),
             SizedBox(width: 12),
             Expanded(
-                child: _CardInfo(
-                    titulo: 'Período', valor: '[Ano/Semestre]', icone: null)),
+                child:
+                    _CardInfo(titulo: 'Período', valor: '[Ano/Semestre]')),
           ],
         ),
         SizedBox(height: 12),
@@ -58,28 +58,30 @@ class _CardInfo extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: const Color(0xFFEBE7FF).withOpacity(0.5), // Fundo bem suave
-        borderRadius: BorderRadius.circular(20),
+        color: AppCores.roxoClaro.withValues(alpha: 0.5),
+        borderRadius: BorderRadius.circular(AppEstilos.raioPilula),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           if (icone != null) ...[
-            Icon(icone, size: 20, color: const Color(0xFF1E293B)),
+            Icon(icone, size: 20, color: AppCores.textoPrimario),
             const SizedBox(height: 8),
           ],
           Text(titulo,
-              style: const TextStyle(fontSize: 12, color: Color(0xFF64748B))),
+              style: const TextStyle(
+                  fontSize: 12, color: AppCores.textoSecundario)),
           const SizedBox(height: 4),
           Text(valor,
               style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
-                  color: Color(0xFF1E293B))),
+                  color: AppCores.textoPrimario)),
           if (meta != null) ...[
             const SizedBox(height: 4),
             Text(meta!,
-                style: const TextStyle(fontSize: 11, color: Color(0xFF64748B))),
+                style: const TextStyle(
+                    fontSize: 11, color: AppCores.textoSecundario)),
           ]
         ],
       ),

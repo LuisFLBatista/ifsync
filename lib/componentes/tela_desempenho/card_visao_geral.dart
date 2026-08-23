@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
+import '../../tema/cores.dart';
+import '../../tema/estilos.dart';
 
 class CardVisaoGeral extends StatelessWidget {
   const CardVisaoGeral({super.key});
@@ -8,32 +10,15 @@ class CardVisaoGeral extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(24),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.02),
-            blurRadius: 10,
-            offset: const Offset(0, 4),
-          ),
-        ],
-      ),
-      child: Column(
+      decoration: AppEstilos.cardBranco,
+      child: const Column(
         children: [
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                padding: const EdgeInsets.all(10),
-                decoration: const BoxDecoration(
-                  color: Color(0xFFEBE7FF),
-                  shape: BoxShape.circle,
-                ),
-                child: const Icon(LucideIcons.medal, size: 20, color: Color(0xFF1E293B)),
-              ),
-              const SizedBox(width: 16),
-              const Expanded(
+              _IconeTitulo(),
+              SizedBox(width: 16),
+              Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -42,7 +27,7 @@ class CardVisaoGeral extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
-                        color: Color(0xFF1E293B),
+                        color: AppCores.textoPrimario,
                       ),
                     ),
                     SizedBox(height: 4),
@@ -50,7 +35,7 @@ class CardVisaoGeral extends StatelessWidget {
                       'Acompanhe notas, faltas e atividades por disciplina',
                       style: TextStyle(
                         fontSize: 13,
-                        color: Color(0xFF64748B),
+                        color: AppCores.textoSecundario,
                         height: 1.4,
                       ),
                     ),
@@ -59,47 +44,72 @@ class CardVisaoGeral extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: 20),
+          SizedBox(height: 20),
           Row(
             children: [
-              _buildStatBox('Média\nGeral', '8,6'),
-              const SizedBox(width: 12),
-              _buildStatBox('Disciplinas', '7'),
-              const SizedBox(width: 12),
-              _buildStatBox('Risco de\nFaltas', '2'),
+              _CaixaEstatistica(rotulo: 'Média\nGeral', valor: '8,6'),
+              SizedBox(width: 12),
+              _CaixaEstatistica(rotulo: 'Disciplinas', valor: '7'),
+              SizedBox(width: 12),
+              _CaixaEstatistica(rotulo: 'Risco de\nFaltas', valor: '2'),
             ],
           ),
         ],
       ),
     );
   }
+}
 
-  Widget _buildStatBox(String label, String value) {
+class _IconeTitulo extends StatelessWidget {
+  const _IconeTitulo();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(10),
+      decoration: const BoxDecoration(
+        color: AppCores.roxoClaro,
+        shape: BoxShape.circle,
+      ),
+      child: const Icon(LucideIcons.medal,
+          size: 20, color: AppCores.textoPrimario),
+    );
+  }
+}
+
+class _CaixaEstatistica extends StatelessWidget {
+  final String rotulo;
+  final String valor;
+
+  const _CaixaEstatistica({required this.rotulo, required this.valor});
+
+  @override
+  Widget build(BuildContext context) {
     return Expanded(
       child: Container(
         padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(
-          color: const Color(0xFFEBE7FF), // Fundo roxo claro
-          borderRadius: BorderRadius.circular(16),
+          color: AppCores.roxoClaro,
+          borderRadius: BorderRadius.circular(AppEstilos.raioCardPequeno),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              label,
+              rotulo,
               style: const TextStyle(
                 fontSize: 11,
-                color: Color(0xFF64748B),
+                color: AppCores.textoSecundario,
                 height: 1.2,
               ),
             ),
             const SizedBox(height: 8),
             Text(
-              value,
+              valor,
               style: const TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
-                color: Color(0xFF1E293B),
+                color: AppCores.textoPrimario,
               ),
             ),
           ],

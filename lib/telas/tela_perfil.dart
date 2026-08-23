@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '../componentes/tela_perfil/cabecalho_perfil.dart';
+import '../tema/cores.dart';
+import '../tema/estilos.dart';
 import '../componentes/tela_perfil/info_usuario.dart';
 import '../componentes/tela_perfil/menu_configuracoes.dart';
 import '../componentes/tela_perfil/secao_conquistas.dart';
@@ -10,15 +11,13 @@ class TelaPerfil extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      backgroundColor: Color(0xFFF7F9FC),
+      backgroundColor: AppCores.fundo,
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: EdgeInsets.all(24.0),
+          padding: AppEstilos.paddingDeTela,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              CabecalhoPerfil(),
-              SizedBox(height: 24),
               InfoUsuario(),
               SizedBox(height: 24),
               _TituloSecao('Notificações'),
@@ -42,7 +41,7 @@ class TelaPerfil extends StatelessWidget {
               MenuSobre(),
               SizedBox(height: 32),
               BotaoSair(),
-              // Espaço extra para o final da rolagem não ficar colado na navbar
+              // Espaço extra para a rolagem não terminar colada na navbar.
               SizedBox(height: 80),
             ],
           ),
@@ -63,7 +62,7 @@ class _TituloSecao extends StatelessWidget {
       style: const TextStyle(
         fontSize: 16,
         fontWeight: FontWeight.bold,
-        color: Color(0xFF1E293B),
+        color: AppCores.textoPrimario,
       ),
     );
   }

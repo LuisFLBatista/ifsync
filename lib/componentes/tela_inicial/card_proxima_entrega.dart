@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
+import '../../tema/cores.dart';
+import '../../tema/estilos.dart';
 
 class CardProximaEntrega extends StatelessWidget {
   const CardProximaEntrega({super.key});
@@ -9,16 +11,10 @@ class CardProximaEntrega extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: const Color(0xFFF3F0FF),
-        borderRadius: BorderRadius.circular(24),
+        color: AppCores.roxoClaroAlt,
+        borderRadius: BorderRadius.circular(AppEstilos.raioCard),
         border: Border.all(color: Colors.white, width: 2),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.03),
-            blurRadius: 10,
-            offset: const Offset(0, 4),
-          ),
-        ],
+        boxShadow: AppEstilos.sombraCard,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -36,14 +32,14 @@ class CardProximaEntrega extends StatelessWidget {
                         shape: BoxShape.circle,
                       ),
                       child: const Icon(LucideIcons.clock,
-                          size: 20, color: Color(0xFF1E293B)),
+                          size: 20, color: AppCores.textoPrimario),
                     ),
                     const SizedBox(width: 8),
                     const Flexible(
                       child: Text(
                         'Próxima entrega',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 15),
+                        style:
+                            TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
                         overflow: TextOverflow.ellipsis,
                       ),
                     ),
@@ -52,7 +48,7 @@ class CardProximaEntrega extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 6, vertical: 4),
                       decoration: BoxDecoration(
-                        color: const Color(0xFFD8D3F7),
+                        color: AppCores.roxoChip,
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: const Text(
@@ -60,7 +56,7 @@ class CardProximaEntrega extends StatelessWidget {
                         style: TextStyle(
                             fontSize: 11,
                             fontWeight: FontWeight.w600,
-                            color: Color(0xFF1E293B)),
+                            color: AppCores.textoPrimario),
                       ),
                     ),
                   ],
@@ -70,7 +66,7 @@ class CardProximaEntrega extends StatelessWidget {
               ElevatedButton(
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF7B61FF),
+                  backgroundColor: AppCores.roxoPrimario,
                   foregroundColor: Colors.white,
                   elevation: 0,
                   shape: RoundedRectangleBorder(
@@ -88,7 +84,7 @@ class CardProximaEntrega extends StatelessWidget {
           const Text(
             'Trabalho de Redes • Moodle',
             style: TextStyle(
-                color: Color(0xFF64748B), fontWeight: FontWeight.w500),
+                color: AppCores.textoSecundario, fontWeight: FontWeight.w500),
           ),
           const SizedBox(height: 16),
           const Row(
@@ -104,7 +100,6 @@ class CardProximaEntrega extends StatelessWidget {
   }
 }
 
-// Widget privado (só usado aqui), por isso começa com _
 class _ChipInformacao extends StatelessWidget {
   final String texto;
   const _ChipInformacao({required this.texto});
@@ -114,13 +109,13 @@ class _ChipInformacao extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
       decoration: BoxDecoration(
-        color: const Color(0xFFEBE7FF),
-        borderRadius: BorderRadius.circular(16),
+        color: AppCores.roxoClaro,
+        borderRadius: BorderRadius.circular(AppEstilos.raioCardPequeno),
       ),
       child: Text(
         texto,
         style: const TextStyle(
-          color: Color(0xFF1E293B),
+          color: AppCores.textoPrimario,
           fontWeight: FontWeight.w500,
           fontSize: 13,
         ),
